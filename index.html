@@ -8,16 +8,139 @@
         <link href="style.css" rel="stylesheet">
     </head>
     <body>
-        <div class="container">
+
+                    <!-- front section or 1st page -->
+
+<div id="main-sec">
             <h1 class="text-center">Welcome To Student Bank.</h1>
-            <div class="login-area">
+        <div class="login-area">
                 <h4>Login</h4>
                 <input type="text" class="form-control" placeholder="E-mail">
                 <br>
                 <input type="password" class="form-control" placeholder="Password">
                 <br>
-                <button class="btn btn-success">Enter</button>
+                <button id="login" class="btn btn-success">Enter</button>
+        </div>
+</div>
+                            <!-- end -->
+
+                 <!-- Transition section or 2nd page  -->
+                    
+<div id="transition-sec">
+                          <!-- update  status box -->
+        <div class="row">
+                <div class="col-md-4">
+                    <div class="deposit update-status">
+                        <h5>Deposit</h5>
+                        <h1>$<span id="currentAmount">00</span></h1>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="withdraw update-status">
+                        <h5>Withdraw</h5>
+                        <h1>$00</h1>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="balance update-status">
+                        <h5>Balance</h5>
+                        <h1>$<span id="currentBalance">1200</span></h1>
+                    </div>
+                </div>
+        </div>
+                        <!-- end -->
+
+                    <!-- Amount entry box -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="login-area">  
+                <h4>Deposit</h4>
+                <input id="addAmount" type="text" class="form-control" placeholder="$ amount you want to deposit">
+                <br>
+                <button id="depositBtn" class="btn btn-success">Deposit</button>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="login-area">
+                <h4>Withdraw</h4>
+                <input id="withDrawAmount" type="text" class="form-control" placeholder="$ amount you want to withdraw">
+                <br>
+                <button id="withDrawBtn" class="btn btn-success">Withdraw</button>
+            </div>
+        </div>
+    </div> 
+                                <!-- end -->
+</div>
+                                <!-- Html End -->
+
+
+                        <!-- JS Section here -->
+
+    <script>
+                        // login button handler
+            const loginBtn = document.getElementById("login");
+            loginBtn.addEventListener('click', function(){
+                const fullArea = document.getElementById("main-sec")
+                fullArea.style.display = "none";
+                const transitionArea = document.getElementById("transition-sec")
+                transitionArea.style.display = "block";
+            })
+
+                        // deposit button handler
+            const addDeposit = document.getElementById("depositBtn");
+            addDeposit.addEventListener('click', function(){
+            const depositNumber = getInput("addAmount");         //calling a function
+            
+
+            updateAmount("currentAmount", depositNumber);       //calling a function
+            updateAmount("currentBalance", depositNumber);      //calling a function
+
+            document.getElementById("addAmount").value = "";    // to make the input box empty
+        })
+
+
+                            // withdraw button handler
+            const withDrawBtn = document.getElementById("withDrawBtn");
+            withDrawBtn.addEventListener("click", function() {
+            const withDrawNumber = getInput("withDrawAmount");  //calling a function
+        })
+
+
+        function getInput(id) 
+        {
+            const inputAmount = document.getElementById(id).value;
+            const inputNumber = parseFloat(inputAmount);
+            return inputNumber;
+                                }
+
+
+        function updateAmount(id, depositNumber) 
+        {
+            const amount = document.getElementById(id).innerText;
+            const amountNumber = parseFloat(amount);
+            const total = depositNumber + amountNumber;
+            document.getElementById(id).innerText = total; 
+                                                            }
+     </script>
+
     </body>
 </html>
+
+<!--  deposit amount handler     no-1
+
+ const currentAmount = document.getElementById("currentAmount").innerText;
+ const currentAmountNumber = parseFloat(currentAmount);
+ const totalDeposit = depositNumber + currentAmountNumber;
+ document.getElementById("currentAmount").innerText = totalDeposit; 
+
+                balance amount handler    no-1.1
+
+ const currentBalance = document.getElementById("currentBalance").innerText;
+ const currentBalanceNumber = parseFloat(currentBalance);
+ const totalBalance = depositNumber + currentBalanceNumber;
+ document.getElementById("currentBalance").innerText = totalBalance;
+
+     I'm using function instant of no-1 & no-1.1  -->

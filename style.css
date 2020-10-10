@@ -7,3 +7,30 @@ body{
     padding: 40px;
     border-radius: 10px;
     box-shadow: 5px 5px 10px grey;
+}
+
+#transition-sec{
+    display: none;
+}
+
+.update-status{
+    color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.update-status h1{
+    font-size: 45px;
+}
+
+.deposit{
+    background-color: slateblue;
+}
+
+.withdraw{
+    background-color: #f77782;
+}
+
+.balance{
+    background-color: orange;
+}
